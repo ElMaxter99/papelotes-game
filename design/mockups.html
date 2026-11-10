@@ -86,10 +86,12 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
   <p>Maquetas de todas las pantallas. Dibujos de ejemplo y nombres inventados. Nada está programado todavía: dime qué cambiar y lo ajusto antes de escribir código.</p>
 </header>
 <nav role="tablist" id="tabs">
-  <button role="tab" data-t="portada" aria-selected="true">Portada</button>
+  <button role="tab" data-t="matriz" aria-selected="true">Matriz rol × dispositivo</button>
+  <button role="tab" data-t="portada" aria-selected="false">Portada</button>
   <button role="tab" data-t="acceso" aria-selected="false">Acceso</button>
   <button role="tab" data-t="tv" aria-selected="false">TV</button>
-  <button role="tab" data-t="movil" aria-selected="false">Jugadores (móvil)</button>
+  <button role="tab" data-t="movil" aria-selected="false">Jugador móvil</button>
+  <button role="tab" data-t="jde" aria-selected="false">Jugador escritorio</button>
   <button role="tab" data-t="gm" aria-selected="false">GM escritorio</button>
   <button role="tab" data-t="gmm" aria-selected="false">GM móvil</button>
   <button role="tab" data-t="admin" aria-selected="false">Admin escritorio</button>
@@ -102,7 +104,33 @@ button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offse
 </nav>
 
 
-<section id="portada">
+
+<section id="matriz">
+ <h2>Matriz de rol × dispositivo</h2>
+ <p>Cada casilla enlaza a su pestaña. Las marcadas «nuevo» no existían antes de este mensaje.</p>
+ <div class="scroll"><table>
+  <tr><th>Rol</th><th>Escritorio</th><th>Móvil</th><th>TV</th></tr>
+  <tr><td><strong>Visitante</strong></td><td><a href="#portada" style="color:var(--blue)">Portada y acceso</a></td><td><a href="#portada" style="color:var(--blue)">Portada y acceso</a></td><td>—</td></tr>
+  <tr><td><strong>Jugador</strong></td><td><a href="#jde" style="color:var(--blue)">Jugador escritorio</a> <span class="chip wait">nuevo</span></td><td><a href="#movil" style="color:var(--blue)">Jugador móvil</a></td><td><a href="#tv" style="color:var(--blue)">TV</a> (lo que mira)</td></tr>
+  <tr><td><strong>Game Master</strong></td><td><a href="#gm" style="color:var(--blue)">GM escritorio</a></td><td><a href="#gmm" style="color:var(--blue)">GM móvil</a></td><td><a href="#tv" style="color:var(--blue)">TV</a> (la controla)</td></tr>
+  <tr><td><strong>Admin</strong></td><td><a href="#admin" style="color:var(--blue)">Admin escritorio</a></td><td><a href="#adminm" style="color:var(--blue)">Admin móvil</a></td><td>—</td></tr>
+  <tr><td><strong>Todos</strong></td><td colspan="3"><a href="#hist" style="color:var(--blue)">Historial</a> · <a href="#estados" style="color:var(--blue)">Estados y errores</a> · <a href="#sistema" style="color:var(--blue)">Sistema de diseño</a> · <a href="#anim" style="color:var(--blue)">Flujo animado</a></td></tr>
+ </table></div>
+ <div class="note">Faltaba la combinación jugador en escritorio (portátil o tableta, por ejemplo con webcam o subiendo un archivo). Ahora está en su pestaña.</div>
+</section>
+
+<section id="jde" hidden>
+ <h2>Jugador en escritorio · <code>/game/[code]/play</code></h2>
+ <p>Mismo flujo que en móvil, pensado para portátil o tableta: la foto se elige desde archivo o webcam, con arrastrar y soltar.</p>
+ <div class="row">
+  <div><div class="cap">Dibuja (idea y tiempo)</div><div class="desk" style="max-width:420px"><div class="top">Ronda 3/8<span class="sp"></span>01:12</div><div class="body"><div class="idea">🏠 Una casa</div><div class="bar"><i style="width:60%"></i></div><p>Dibújala en papel y haz la foto cuando termines.</p><div class="btn">¡Ya he terminado!</div></div></div></div>
+  <div><div class="cap">Subir foto</div><div class="desk" style="max-width:420px"><div class="top">Sube en 18 s</div><div class="body"><div class="cam">Arrastra aquí tu foto<br>o elige un archivo</div><div style="display:flex;gap:8px"><span class="btn small">Elegir archivo</span><span class="btn small alt">Usar webcam</span></div></div></div></div>
+  <div><div class="cap">Vista previa y enviar</div><div class="desk" style="max-width:420px"><div class="top">Revisa tu foto</div><div class="body"><div class="pic" style="height:110px"><div class="sk"></div></div><div style="display:flex;gap:8px"><span class="btn small">Enviar</span><span class="btn small alt">Repetir</span></div></div></div></div>
+  <div><div class="cap">Votar</div><div class="desk" style="max-width:420px"><div class="top">Elige el mejor</div><div class="body"><div class="grid3"><div class="pic"><b>1</b><div class="sk"></div></div><div class="pic win"><b>2</b><div class="sk"></div></div><div class="pic"><b>3</b><div class="sk"></div></div></div><div class="btn">Votar el 2</div></div></div></div>
+ </div>
+</section>
+
+<section id="portada" hidden>
  <h2>Portada (primera vista) · <code>/</code></h2>
  <p>Escritorio y móvil. Explica el juego en una mirada y da dos caminos: crear partida (Game Master) o unirse con código (jugador).</p>
  <div class="row">
@@ -270,7 +298,7 @@ function show(t){
   document.querySelectorAll('section').forEach(function(s){s.hidden=s.id!==t});
 }
 tabs.forEach(function(b){b.addEventListener('click',function(){location.hash=b.dataset.t})});
-function fromHash(){var h=location.hash.slice(1);show(document.getElementById(h)?h:'portada')}
+function fromHash(){var h=location.hash.slice(1);show(document.getElementById(h)?h:'matriz')}
 window.addEventListener('hashchange',fromHash);fromHash();
 })();
 </script>
