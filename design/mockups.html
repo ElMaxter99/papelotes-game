@@ -57,6 +57,14 @@ th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}th{fon
 .note{border-left:4px solid var(--pink);padding:6px 12px;background:var(--paper);border-radius:0 8px 8px 0;font-size:13px;max-width:70ch}
 .podium{display:flex;gap:8px;align-items:flex-end;justify-content:center;flex:1}
 .podium div{border:2px solid var(--ink);background:var(--yellow);color:#1b2440;font-weight:800;text-align:center;padding:6px 10px;border-radius:6px 6px 0 0}
+.desk{width:100%;max-width:760px;border:2px solid var(--ink);border-radius:10px;overflow:hidden;background:var(--paper)}
+.desk .top{display:flex;gap:6px;align-items:center;padding:8px 12px;border-bottom:2px solid var(--ink);font-weight:800;background:var(--bg)}
+.desk .top .sp{flex:1}.desk .body{padding:16px;display:flex;flex-direction:column;gap:12px;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+.hero{display:flex;gap:16px;flex-wrap:wrap;align-items:center}.hero>div{flex:1;min-width:200px;display:flex;flex-direction:column;gap:10px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.steps .li{flex-direction:column;align-items:flex-start;gap:2px}
+.phone.tall{min-height:480px}
+.tabbar{display:flex;justify-content:space-around;margin-top:auto;border-top:2px solid var(--ink);padding-top:8px;font-size:11px;font-weight:700}
 </style>
 
 <div class="wrap">
@@ -65,15 +73,79 @@ th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}th{fon
   <p>Maquetas de todas las pantallas. Dibujos de ejemplo y nombres inventados. Nada está programado todavía: dime qué cambiar y lo ajusto antes de escribir código.</p>
 </header>
 <nav role="tablist" id="tabs">
-  <button role="tab" data-t="tv" aria-selected="true">TV</button>
-  <button role="tab" data-t="movil" aria-selected="false">Móvil</button>
-  <button role="tab" data-t="gm" aria-selected="false">Game Master</button>
-  <button role="tab" data-t="admin" aria-selected="false">Admin</button>
+  <button role="tab" data-t="portada" aria-selected="true">Portada</button>
+  <button role="tab" data-t="acceso" aria-selected="false">Acceso</button>
+  <button role="tab" data-t="tv" aria-selected="false">TV</button>
+  <button role="tab" data-t="movil" aria-selected="false">Jugadores (móvil)</button>
+  <button role="tab" data-t="gm" aria-selected="false">GM escritorio</button>
+  <button role="tab" data-t="gmm" aria-selected="false">GM móvil</button>
+  <button role="tab" data-t="admin" aria-selected="false">Admin escritorio</button>
+  <button role="tab" data-t="adminm" aria-selected="false">Admin móvil</button>
   <button role="tab" data-t="hist" aria-selected="false">Historial</button>
+  <button role="tab" data-t="estados" aria-selected="false">Estados y errores</button>
   <button role="tab" data-t="flujo" aria-selected="false">Flujo y reglas</button>
 </nav>
 
-<section id="tv">
+
+<section id="portada">
+ <h2>Portada (primera vista) · <code>/</code></h2>
+ <p>Escritorio y móvil. Explica el juego en una mirada y da dos caminos: crear partida (Game Master) o unirse con código (jugador).</p>
+ <div class="row">
+  <div><div class="cap">Escritorio</div><div class="desk"><div class="top">✏️ Papelotes<span class="sp"></span><span class="btn small alt">Entrar</span><span class="btn small">Crear partida</span></div><div class="body">
+   <div class="hero"><div><div class="big">Dibuja en papel. La tele lo revela.</div><p>Todos dibujan la misma idea en su papel, le hacen una foto con el móvil y la pantalla lo muestra para votar. Cada partida queda guardada.</p><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="btn">Crear una partida</span><span class="btn alt">Tengo un código</span></div></div><div class="tv" style="max-width:300px;min-width:200px"><div class="idea">🏠 Una casa</div><div class="timer" style="font-size:36px">01:12</div></div></div>
+   <div class="steps"><div class="li"><strong>1 · Mira la idea</strong>En la tele y en tu móvil</div><div class="li"><strong>2 · Dibuja en papel</strong>Tienes 60–120 s</div><div class="li"><strong>3 · Haz la foto</strong>Desde tu móvil</div><div class="li"><strong>4 · Vota</strong>Anónimo hasta el final</div></div>
+   <div class="li"><span>Hecho en casa para jugar en familia.</span><span><a href="#" style="color:var(--blue)">Legal</a> · <a href="#" style="color:var(--blue)">Privacidad</a> · <a href="#" style="color:var(--blue)">Cookies</a></span></div></div></div></div>
+  <div><div class="cap">Móvil</div><div class="phone tall"><div class="tvbar"><span>✏️ Papelotes</span><span>Entrar</span></div><div class="big">Dibuja en papel.<br>La tele lo revela.</div><p style="font-size:12px">Foto a tu dibujo, voto y recuerdo de cada partida.</p><div class="btn">Crear una partida</div><div class="btn alt">Tengo un código</div><div class="li" style="flex-direction:column;align-items:flex-start"><strong>Cómo se juega</strong>Idea · papel · foto · voto</div></div></div>
+  <div><div class="cap">Unirse con código</div><div class="phone tall"><div class="hand">¿Cuál es tu sala?</div><div class="li" style="justify-content:center;font-size:26px;letter-spacing:.3em;font-weight:800">F G K 7</div><div class="btn">Continuar</div><p style="font-size:11px">También puedes escanear el QR de la tele.</p></div></div>
+ </div>
+</section>
+
+<section id="acceso" hidden>
+ <h2>Acceso y creación · <code>/login</code>, <code>/new-game</code></h2>
+ <p>Los jugadores no tienen cuenta. Game Masters y admin entran por correo.</p>
+ <div class="row">
+  <div><div class="cap">Login Game Master (escritorio)</div><div class="desk" style="max-width:420px"><div class="top">✏️ Papelotes</div><div class="body"><div class="big">Entra para crear partidas</div><div class="li">Correo: <strong>tu@correo.com</strong></div><div class="btn">Enviarme un enlace de acceso</div><p style="font-size:12px">Te mandamos un enlace; no hay contraseña.</p></div></div></div>
+  <div><div class="cap">Login (móvil)</div><div class="phone tall"><div class="hand">¡Hola de nuevo!</div><div class="li">Correo: <strong>tu@correo.com</strong></div><div class="btn">Enviar enlace</div><div class="li" style="margin-top:auto">📬 Revisa tu correo</div></div></div>
+  <div><div class="cap">Nueva partida · paso 2 Modo</div><div class="desk" style="max-width:420px"><div class="top">Nueva partida<span class="sp"></span><span class="chip">2 de 4</span></div><div class="body"><div class="li"><strong>🗳 El mejor dibujo</strong><span class="chip ok">elegido</span></div><div class="li"><strong>🕵️ Adivina el dibujo</strong><span class="chip">elegir</span></div><div class="li" style="opacity:.55"><strong>☎️ Teléfono escacharrado</strong><span class="chip">próximamente</span></div><div class="btn">Siguiente</div></div></div></div>
+  <div><div class="cap">Nueva partida · paso 3 Tiempos y reglas</div><div class="desk" style="max-width:420px"><div class="top">Nueva partida<span class="sp"></span><span class="chip">3 de 4</span></div><div class="body"><div class="li">Dibujo <strong>90 s</strong></div><div class="li">Subida de foto <strong>+20 s</strong></div><div class="li">Rondas <strong>8</strong></div><div class="li">Dibujos anónimos <strong>sí</strong></div><div class="li">Máx. jugadores <strong>12</strong></div><div class="btn">Crear sala</div></div></div></div>
+ </div>
+</section>
+
+<section id="gmm" hidden>
+ <h2>Game Master · versión móvil</h2>
+ <p>El GM suele llevar el panel desde el móvil en el sofá: botones grandes y lo esencial arriba.</p>
+ <div class="row">
+  <div><div class="cap">Inicio / mis partidas</div><div class="phone tall"><div class="tvbar"><span>✏️ Papelotes</span><span>maxter</span></div><div class="btn">+ Nueva partida</div><div class="li"><span><strong>FGK7</strong><br>en curso · 3/8</span><span class="chip ok">Panel</span></div><div class="li"><span><strong>PQ2M</strong><br>terminada</span><span class="chip">Historial</span></div><div class="tabbar"><span>Partidas</span><span>Listas</span><span>Ajustes</span></div></div></div>
+  <div><div class="cap">Panel en partida</div><div class="phone tall"><div class="tvbar"><span>Ronda 3/8</span><span>FGK7</span></div><div class="timer" style="font-size:40px">01:12</div><div class="btn pink">Cerrar ya</div><div class="btn alt">Pausar</div><div class="btn alt">+30 s</div><div class="li"><strong>Ana</strong><span class="chip ok">✓</span></div><div class="li"><strong>Marta</strong><span class="chip bad">desconect.</span></div></div></div>
+  <div><div class="cap">Mis listas de ideas</div><div class="phone tall"><div class="li"><strong>Cumple de Marta</strong><span>24</span></div><div class="li"><strong>Animales y objetos</strong><span>copia</span></div><div class="btn small" style="align-self:flex-start">+ Idea</div><div class="cap" style="margin-top:6px">Nueva idea</div><div class="li">Título: <strong>Homer Simpson</strong></div><div class="li">Emoji: <strong>—</strong></div><div class="li">📷 Foto de referencia</div><div class="btn">Guardar</div></div></div>
+  <div><div class="cap">Historial de mi partida</div><div class="phone tall"><div class="cap">Ronda 3 · 🏠 Una casa</div><div class="grid3" style="grid-template-columns:repeat(2,1fr);flex:none"><div class="pic win"><b>1</b><div class="sk"></div>Marta · 3</div><div class="pic"><b>2</b><div class="sk"></div>Luis · 1</div></div><div class="btn alt small">ZIP</div><div class="btn alt small">Collage</div></div></div>
+ </div>
+</section>
+
+<section id="adminm" hidden>
+ <h2>Admin · versión móvil</h2>
+ <p>Lo mismo que el escritorio, en tarjetas en lugar de tablas.</p>
+ <div class="row">
+  <div><div class="cap">Resumen</div><div class="phone tall"><div class="tvbar"><span>Admin</span><span>☰</span></div><div class="li"><span>Partidas activas</span><strong>3</strong></div><div class="li"><span>Fotos guardadas</span><strong>1.204</strong></div><div class="li"><span>Peso total</span><strong>412 MB</strong></div><div class="bar"><i style="width:41%"></i></div><p style="font-size:11px">41 % del almacenamiento gratuito</p></div></div>
+  <div><div class="cap">Partidas</div><div class="phone tall"><div class="li" style="flex-direction:column;align-items:flex-start"><strong>FGK7 · maxter</strong><span class="chip ok">en curso 3/8</span><span>12 fotos · 3,4 MB</span></div><div class="li" style="flex-direction:column;align-items:flex-start"><strong>PQ2M · laura</strong><span class="chip">terminada</span><span>80 fotos · 22 MB</span><span class="btn small pink">Borrar fotos</span></div></div></div>
+  <div><div class="cap">Usuarios</div><div class="phone tall"><div class="li"><span><strong>maxter</strong><br>admin</span><span class="chip ok">activo</span></div><div class="li"><span><strong>laura</strong><br>Game Master</span><span class="chip ok">activo</span></div><div class="li"><span><strong>pepe</strong><br>Game Master</span><span class="chip bad">bloqueado</span></div></div></div>
+  <div><div class="cap">Listas del sistema</div><div class="phone tall"><div class="li"><strong>Animales y objetos</strong><span>60</span></div><div class="li"><strong>Famosos con foto</strong><span>35</span></div><div class="btn small" style="align-self:flex-start">+ Lista</div></div></div>
+ </div>
+</section>
+
+<section id="estados" hidden>
+ <h2>Estados vacíos, pausas y errores</h2>
+ <div class="row">
+  <div><div class="cap">TV · pausa del GM</div><div class="tv"><div class="big">⏸ Partida en pausa</div><p>El Game Master la reanudará enseguida.</p></div></div>
+  <div><div class="cap">TV · sin conexión</div><div class="tv"><div class="big">Reconectando…</div><p>La partida sigue; no se pierde ninguna foto.</p></div></div>
+  <div><div class="cap">Móvil · reconexión</div><div class="phone"><div class="big">📶 Sin red</div><p>Tu foto está guardada en el móvil. Se enviará cuando vuelva la conexión.</p><div class="btn">Reintentar envío</div></div></div>
+  <div><div class="cap">Móvil · foto rechazada</div><div class="phone"><div class="big">Foto muy oscura</div><p>Haz otra con más luz o con el papel más cerca.</p><div class="btn">Repetir foto</div></div></div>
+  <div><div class="cap">Móvil · sala llena / código mal</div><div class="phone"><div class="big">No encuentro esa sala</div><p>Revisa el código de 4 letras que se ve en la tele.</p><div class="btn alt">Volver</div></div></div>
+  <div><div class="cap">GM · aún sin partidas</div><div class="desk" style="max-width:320px"><div class="body"><div class="big">Aún no hay partidas</div><p>Crea la primera: tardas un minuto.</p><div class="btn">Crear partida</div></div></div></div>
+ </div>
+</section>
+
+<section id="tv" hidden>
  <h2>TV · <code>/game/[code]/screen</code></h2>
  <p>Una pantalla por fase. Letra grande, legible a 3 metros.</p>
  <div class="row">
@@ -153,7 +225,7 @@ function show(t){
   document.querySelectorAll('section').forEach(function(s){s.hidden=s.id!==t});
 }
 tabs.forEach(function(b){b.addEventListener('click',function(){location.hash=b.dataset.t})});
-function fromHash(){var h=location.hash.slice(1);show(document.getElementById(h)?h:'tv')}
+function fromHash(){var h=location.hash.slice(1);show(document.getElementById(h)?h:'portada')}
 window.addEventListener('hashchange',fromHash);fromHash();
 })();
 </script>
