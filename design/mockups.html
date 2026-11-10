@@ -1,0 +1,159 @@
+<title>Papelotes Diseño</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;800&family=Caveat:wght@600;700&display=swap">
+<style>
+/* Concepto: hoja cuadriculada de cuaderno; TV = hoja grande, móvil = hoja de bolsillo, rotuladores como color. Un solo gesto: la cuadrícula y el trazo de rotulador. */
+:root{
+  --bg:#f3f6fb; --paper:#ffffff; --grid:#d6e2f3; --ink:#1b2440; --muted:#5d6a8a;
+  --blue:#2f5bea; --pink:#e83e8c; --yellow:#ffd23f; --green:#1fa971; --line:#c9d3e6;
+  --font-text:'Bricolage Grotesque',system-ui,sans-serif; --font-hand:'Caveat','Segoe Script',cursive;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0f1426;--paper:#171e36;--grid:#26304f;--ink:#eef1fb;--muted:#9aa6c8;--blue:#6f8cff;--pink:#ff6fae;--yellow:#ffd23f;--green:#43d6a0;--line:#33406a;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#0f1426;--paper:#171e36;--grid:#26304f;--ink:#eef1fb;--muted:#9aa6c8;--blue:#6f8cff;--pink:#ff6fae;--yellow:#ffd23f;--green:#43d6a0;--line:#33406a;color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-text);padding-inline:max(16px,env(safe-area-inset-left,0px)) max(16px,env(safe-area-inset-right,0px));padding-block:20px 48px;font-size:15px;line-height:1.45}
+.wrap{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:20px}
+h1{font-weight:800;font-size:clamp(28px,5vw,44px);margin:0;letter-spacing:-.02em;text-wrap:balance}
+h1 span{font-family:var(--font-hand);color:var(--pink);font-weight:700}
+h2{font-size:20px;margin:0 0 4px;text-wrap:balance}
+p{margin:0;color:var(--muted);max-width:68ch}
+nav{display:flex;gap:8px;flex-wrap:wrap}
+nav button{font:inherit;font-weight:600;padding:8px 14px;border-radius:999px;border:2px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer}
+nav button[aria-selected=true]{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+nav button:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+section[hidden]{display:none}
+.row{display:flex;flex-wrap:wrap;gap:20px;align-items:flex-start}
+.cap{font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);font-weight:600;margin-bottom:6px}
+.tv,.phone,.panel{background:var(--paper);border:2px solid var(--ink);position:relative;overflow:hidden;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+.tv{width:100%;max-width:520px;aspect-ratio:16/9;border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px;container-type:inline-size}
+.phone{width:230px;min-height:420px;border-radius:26px;padding:16px 14px;display:flex;flex-direction:column;gap:10px;align-items:stretch}
+.panel{width:100%;max-width:520px;border-radius:10px;padding:14px;display:flex;flex-direction:column;gap:10px}
+.big{font-weight:800;font-size:26px;line-height:1.1}
+.hand{font-family:var(--font-hand);font-size:30px;color:var(--pink);line-height:1}
+.tvbar{display:flex;justify-content:space-between;font-size:11px;font-weight:600;color:var(--muted)}
+.timer{font-weight:800;font-size:58px;color:var(--blue);line-height:1;font-variant-numeric:tabular-nums}
+.idea{background:var(--yellow);color:#1b2440;border-radius:6px;padding:10px 14px;font-weight:800;font-size:24px;transform:rotate(-1.5deg);align-self:flex-start;box-shadow:3px 3px 0 var(--ink)}
+.idea.photo{display:flex;gap:10px;align-items:center}
+.ph{width:56px;height:56px;border-radius:6px;background:repeating-linear-gradient(45deg,#bbb,#bbb 6px,#ddd 6px,#ddd 12px);flex:none;border:2px solid var(--ink)}
+.btn{display:block;text-align:center;font-weight:800;padding:12px;border-radius:12px;border:2px solid var(--ink);background:var(--blue);color:#fff;box-shadow:0 3px 0 var(--ink)}
+.btn.alt{background:var(--paper);color:var(--ink)}.btn.pink{background:var(--pink)}.btn.small{padding:6px 10px;font-size:12px;border-radius:8px;display:inline-block}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font-size:11px;font-weight:700;padding:3px 8px;border-radius:999px;border:2px solid var(--ink);background:var(--paper)}
+.chip.ok{background:var(--green);color:#06281b}.chip.wait{background:var(--yellow);color:#1b2440}.chip.bad{background:var(--pink);color:#fff}
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;flex:1}
+.pic{border:2px solid var(--ink);border-radius:6px;background:var(--paper);display:flex;flex-direction:column;align-items:center;justify-content:center;font-weight:800;position:relative;min-height:60px;font-size:12px}
+.pic .sk{width:70%;height:60%;border-bottom:3px solid var(--blue);border-radius:50% 50% 0 0/80% 80% 0 0;opacity:.8}
+.pic b{position:absolute;top:3px;left:3px;background:var(--ink);color:var(--bg);width:18px;height:18px;border-radius:50%;font-size:11px;display:grid;place-items:center}
+.pic.win{outline:4px solid var(--yellow);box-shadow:3px 3px 0 var(--ink)}
+.cam{flex:1;min-height:200px;border-radius:12px;border:2px dashed var(--ink);display:grid;place-items:center;text-align:center;background:color-mix(in srgb,var(--bg) 70%,transparent);font-weight:700;padding:10px}
+.list{display:flex;flex-direction:column;gap:6px}
+.li{display:flex;justify-content:space-between;gap:8px;align-items:center;padding:8px 10px;border:2px solid var(--line);border-radius:10px;background:var(--paper);font-size:13px}
+.li strong{font-weight:700}
+.bar{height:10px;border-radius:99px;background:var(--line);overflow:hidden}.bar i{display:block;height:100%;background:var(--blue)}
+table{border-collapse:collapse;width:100%;font-size:13px;background:var(--paper)}
+th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}th{font-size:11px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.scroll{overflow-x:auto;border:2px solid var(--line);border-radius:10px;max-width:100%}
+.note{border-left:4px solid var(--pink);padding:6px 12px;background:var(--paper);border-radius:0 8px 8px 0;font-size:13px;max-width:70ch}
+.podium{display:flex;gap:8px;align-items:flex-end;justify-content:center;flex:1}
+.podium div{border:2px solid var(--ink);background:var(--yellow);color:#1b2440;font-weight:800;text-align:center;padding:6px 10px;border-radius:6px 6px 0 0}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>Papelotes <span>diseños para aprobar</span></h1>
+  <p>Maquetas de todas las pantallas. Dibujos de ejemplo y nombres inventados. Nada está programado todavía: dime qué cambiar y lo ajusto antes de escribir código.</p>
+</header>
+<nav role="tablist" id="tabs">
+  <button role="tab" data-t="tv" aria-selected="true">TV</button>
+  <button role="tab" data-t="movil" aria-selected="false">Móvil</button>
+  <button role="tab" data-t="gm" aria-selected="false">Game Master</button>
+  <button role="tab" data-t="admin" aria-selected="false">Admin</button>
+  <button role="tab" data-t="hist" aria-selected="false">Historial</button>
+  <button role="tab" data-t="flujo" aria-selected="false">Flujo y reglas</button>
+</nav>
+
+<section id="tv">
+ <h2>TV · <code>/game/[code]/screen</code></h2>
+ <p>Una pantalla por fase. Letra grande, legible a 3 metros.</p>
+ <div class="row">
+  <div><div class="cap">0 · Sala de espera</div><div class="tv"><div class="tvbar"><span>PAPELOTES</span><span>Sala FGK7</span></div><div class="big">Entra con tu móvil</div><div style="display:flex;gap:12px;align-items:center"><div class="ph" style="width:86px;height:86px"></div><div><div class="hand">papelotes.app/FGK7</div><div class="chips"><span class="chip">Ana</span><span class="chip">Luis</span><span class="chip">Marta</span><span class="chip wait">Esperando…</span></div></div></div><div class="tvbar"><span>Coged papel y un rotulador gordo</span><span>4 jugadores</span></div></div></div>
+  <div><div class="cap">1 · Idea simple</div><div class="tv"><div class="tvbar"><span>Ronda 3 de 8</span><span>Prepárate…</span></div><div class="hand">dibuja…</div><div class="idea" style="font-size:44px">🏠 Una casa</div><div class="tvbar"><span>Dificultad ★☆☆</span><span>Empieza en 3</span></div></div></div>
+  <div><div class="cap">1b · Idea con foto</div><div class="tv"><div class="tvbar"><span>Ronda 4 de 8</span><span>Dibuja lo que ves</span></div><div class="idea photo" style="font-size:30px"><div class="ph" style="width:110px;height:110px"></div>Homer Simpson</div><div class="tvbar"><span>Dificultad ★★★</span><span>Imagen de referencia</span></div></div></div>
+  <div><div class="cap">2 · A dibujar</div><div class="tv"><div class="tvbar"><span>Ronda 3 de 8</span><span>🏠 Una casa</span></div><div class="timer">01:12</div><div class="bar"><i style="width:60%"></i></div><div class="chips"><span class="chip ok">Ana ✓</span><span class="chip">Luis…</span><span class="chip">Marta…</span><span class="chip ok">Pau ✓</span></div></div></div>
+  <div><div class="cap">3 · Haced la foto</div><div class="tv"><div class="tvbar"><span>Ronda 3 de 8</span><span>Quedan 18 s para subirla</span></div><div class="big">📸 Foto a vuestro papel</div><div class="chips"><span class="chip ok">Ana subida</span><span class="chip wait">Luis subiendo…</span><span class="chip bad">Marta sin foto</span><span class="chip ok">Pau subida</span></div></div></div>
+  <div><div class="cap">4 · Revelación (anónima)</div><div class="tv"><div class="tvbar"><span>Ronda 3 de 8</span><span>🏠 Una casa</span></div><div class="grid3"><div class="pic"><b>1</b><div class="sk"></div></div><div class="pic"><b>2</b><div class="sk"></div></div><div class="pic"><b>3</b><div class="sk"></div></div></div></div></div>
+  <div><div class="cap">5 · Votación</div><div class="tv"><div class="tvbar"><span>Vota el mejor</span><span>3 de 4 han votado</span></div><div class="grid3"><div class="pic"><b>1</b><div class="sk"></div></div><div class="pic"><b>2</b><div class="sk"></div></div><div class="pic"><b>3</b><div class="sk"></div></div></div><div class="bar"><i style="width:75%"></i></div></div></div>
+  <div><div class="cap">6 · Resultado de la ronda</div><div class="tv"><div class="tvbar"><span>Ronda 3 de 8</span><span>Gana…</span></div><div class="grid3"><div class="pic win"><b>2</b><div class="sk"></div>Marta · 3 votos</div><div class="pic"><b>1</b><div class="sk"></div>Luis · 1</div><div class="pic"><b>3</b><div class="sk"></div>Ana · 0</div></div></div></div>
+  <div><div class="cap">7 · Podio final</div><div class="tv"><div class="tvbar"><span>Fin de partida</span><span>8 rondas</span></div><div class="podium"><div>🥈 Luis<br>620</div><div style="padding-top:22px">🥇 Marta<br>840</div><div>🥉 Ana<br>510</div></div><div class="tvbar"><span>Galería guardada en el historial</span><span>QR para verla</span></div></div></div>
+ </div>
+</section>
+
+<section id="movil" hidden>
+ <h2>Móvil · <code>/game/[code]/play</code></h2>
+ <p>Una acción grande por pantalla. La cámara se abre con la trasera. Nada se dibuja en el móvil.</p>
+ <div class="row">
+  <div><div class="cap">Unirse</div><div class="phone"><div class="hand">¡Papelotes!</div><div class="li">Código: <strong>FGK7</strong></div><div class="li">Tu nombre: <strong>Marta</strong></div><div class="chips"><span class="chip">🔵</span><span class="chip">🟣</span><span class="chip">🟡</span><span class="chip">🟢</span></div><div class="btn" style="margin-top:auto">Entrar</div><p style="font-size:11px">Las fotos de tus dibujos se guardan en el historial de la partida.</p></div></div>
+  <div><div class="cap">Dibuja (idea + tiempo)</div><div class="phone"><div class="tvbar"><span>Ronda 3/8</span><span>01:12</span></div><div class="idea">🏠 Una casa</div><div class="bar"><i style="width:60%"></i></div><p>Dibújala en tu papel con rotulador grueso.</p><div class="btn" style="margin-top:auto">¡Ya he terminado!</div></div></div>
+  <div><div class="cap">Foto</div><div class="phone"><div class="tvbar"><span>Sube en 18 s</span></div><div class="cam">📷<br>Encuadra el papel entero, con buena luz</div><div class="btn pink">Hacer foto</div></div></div>
+  <div><div class="cap">Vista previa</div><div class="phone"><div class="cam" style="border-style:solid"><div class="pic" style="border:0;width:100%;height:100%"><div class="sk"></div></div></div><div class="btn">Enviar</div><div class="btn alt">Repetir</div></div></div>
+  <div><div class="cap">Enviado / espera</div><div class="phone" style="justify-content:center;text-align:center"><div class="big">✅ Enviado</div><p>Mira la tele. Faltan Luis y Pau.</p></div></div>
+  <div><div class="cap">Votar</div><div class="phone"><div class="tvbar"><span>Elige el mejor</span></div><div class="grid3" style="grid-template-columns:repeat(2,1fr)"><div class="pic"><b>1</b><div class="sk"></div></div><div class="pic win"><b>2</b><div class="sk"></div></div><div class="pic" style="opacity:.4"><b>3</b>Tu dibujo</div><div class="pic"><b>4</b><div class="sk"></div></div></div><div class="btn" style="margin-top:auto">Votar el 2</div></div></div>
+  <div><div class="cap">Tu resultado</div><div class="phone" style="justify-content:center;text-align:center"><div class="hand">¡2.º!</div><div class="big">+150 pts</div><p>2 votos · entregado a tiempo</p></div></div>
+ </div>
+</section>
+
+<section id="gm" hidden>
+ <h2>Game Master · <code>/host</code>, <code>/new-game</code>, <code>/mis-listas</code></h2>
+ <p>Solo ve y gestiona sus partidas y sus listas de ideas.</p>
+ <div class="row">
+  <div><div class="cap">Nueva partida (asistente)</div><div class="panel"><div class="chips"><span class="chip ok">1 Listas</span><span class="chip">2 Modo</span><span class="chip">3 Tiempos</span><span class="chip">4 Reglas</span></div><div class="li"><span>📋 Animales y objetos (sistema)</span><span class="chip ok">activa</span></div><div class="li"><span>📋 Cumple de Marta (mía)</span><span class="chip ok">activa</span></div><div class="li"><span>📋 Famosos con foto (sistema)</span><span class="chip">inactiva</span></div><div class="li">Rondas: <strong>8</strong> · Dibujo: <strong>90 s</strong> · Subida: <strong>+20 s</strong></div><div class="btn">Siguiente</div></div></div>
+  <div><div class="cap">Panel durante la partida</div><div class="panel"><div class="tvbar"><span>Ronda 3/8 · Dibujo</span><span>FGK7</span></div><div class="timer" style="font-size:38px">01:12</div><div style="display:flex;gap:6px;flex-wrap:wrap"><span class="btn small">Pausar</span><span class="btn small alt">+30 s</span><span class="btn small alt">Cambiar idea</span><span class="btn small pink">Cerrar ya</span></div><div class="list"><div class="li"><strong>Ana</strong><span class="chip ok">foto ✓</span></div><div class="li"><strong>Luis</strong><span class="chip wait">dibujando</span></div><div class="li"><strong>Marta</strong><span class="chip bad">desconectada</span></div></div></div></div>
+  <div><div class="cap">Mis listas de ideas</div><div class="panel"><div class="li"><strong>Cumple de Marta</strong><span>24 ideas · 6 con foto</span></div><div class="li"><strong>Animales y objetos</strong><span>copia del sistema</span></div><div class="list"><div class="li"><span>🏠 Una casa</span><span class="chip">★</span></div><div class="li"><span><span class="ph" style="display:inline-block;width:22px;height:22px;vertical-align:middle"></span> Homer Simpson</span><span class="chip">★★★</span></div></div><div style="display:flex;gap:6px"><span class="btn small">Añadir idea</span><span class="btn small alt">Importar JSON</span><span class="btn small alt">Exportar</span></div></div></div>
+ </div>
+</section>
+
+<section id="admin" hidden>
+ <h2>Admin · <code>/admin</code></h2>
+ <p>Listados globales de todo, listas del sistema y moderación de fotos.</p>
+ <div class="chips"><span class="chip ok">Usuarios</span><span class="chip">Partidas</span><span class="chip">Listas del sistema</span><span class="chip">Biblioteca de imágenes</span><span class="chip">Ajustes</span></div>
+ <div class="scroll"><table><tr><th>Partida</th><th>Game Master</th><th>Estado</th><th>Rondas</th><th>Fotos</th><th>Peso</th><th></th></tr>
+ <tr><td>FGK7</td><td>maxter</td><td><span class="chip ok">en curso</span></td><td>3/8</td><td>12</td><td>3,4 MB</td><td>Ver</td></tr>
+ <tr><td>PQ2M</td><td>laura</td><td><span class="chip">terminada</span></td><td>10/10</td><td>80</td><td>22 MB</td><td>Ver · Borrar fotos</td></tr>
+ <tr><td>ZX91</td><td>pepe</td><td><span class="chip wait">sala</span></td><td>0/6</td><td>0</td><td>0</td><td>Ver</td></tr></table></div>
+ <div class="row"><div class="panel"><div class="cap">Lista del sistema · Animales y objetos</div><div class="li"><span>🐶 Un perro</span><span class="chip">★</span></div><div class="li"><span>🚀 Un cohete</span><span class="chip">★★</span></div><div class="li"><span>Homer Simpson (foto)</span><span class="chip">★★★</span></div><div class="btn small" style="align-self:flex-start">Nueva idea</div></div>
+ <div class="panel"><div class="cap">Ajustes globales</div><div class="li">Retención de fotos <strong>90 días</strong></div><div class="li">Peso máx. por foto <strong>400 KB</strong></div><div class="li">Cuota de fotos por partida <strong>150</strong></div></div></div>
+</section>
+
+<section id="hist" hidden>
+ <h2>Historial · <code>/game/[code]/history</code></h2>
+ <p>Cada partida guarda sus rondas, dibujos, autores, votos y puntos. El Game Master ve las suyas; el admin ve todas.</p>
+ <div class="row">
+  <div class="panel"><div class="cap">Mis partidas</div><div class="li"><span><strong>Sábado en casa</strong><br>10 nov · 5 jugadores</span><span class="chip ok">Marta ganó</span></div><div class="li"><span><strong>Cena de empresa</strong><br>2 nov · 9 jugadores</span><span class="chip">Luis ganó</span></div></div>
+  <div class="panel"><div class="cap">Sábado en casa · Ronda 3 · 🏠 Una casa</div><div class="grid3" style="grid-template-columns:repeat(3,1fr)"><div class="pic win"><b>1</b><div class="sk"></div>Marta · 3</div><div class="pic"><b>2</b><div class="sk"></div>Luis · 1</div><div class="pic"><b>3</b><div class="sk"></div>Ana · 0</div></div><div style="display:flex;gap:6px"><span class="btn small alt">Descargar ZIP</span><span class="btn small alt">Collage para compartir</span><span class="btn small pink">Borrar fotos</span></div></div>
+ </div>
+</section>
+
+<section id="flujo" hidden>
+ <h2>Flujo y reglas acordadas</h2>
+ <div class="list" style="max-width:720px">
+  <div class="li">Idea → 3 s de preparación → dibujo (90 s) → foto (+20 s) → revelación anónima → votación → resultado.</div>
+  <div class="li">Modos MVP: «el mejor dibujo» (voto) y «adivina el dibujo». «Teléfono escacharrado» queda para después.</div>
+  <div class="li">Puntos: 100 por voto, +50 por entregar a tiempo, desempate por menos tiempo.</div>
+  <div class="li">Fotos: cliente reduce a ≈1600 px, servidor normaliza a WebP; retención 90 días configurable.</div>
+ </div>
+ <div class="note">Mientras no pruebe esto en móviles reales, no puedo garantizar el comportamiento de la cámara en iOS y Android.</div>
+</section>
+</div>
+<script>
+(function(){
+var tabs=document.querySelectorAll('#tabs button');
+function show(t){
+  tabs.forEach(function(b){b.setAttribute('aria-selected',String(b.dataset.t===t))});
+  document.querySelectorAll('section').forEach(function(s){s.hidden=s.id!==t});
+}
+tabs.forEach(function(b){b.addEventListener('click',function(){location.hash=b.dataset.t})});
+function fromHash(){var h=location.hash.slice(1);show(document.getElementById(h)?h:'tv')}
+window.addEventListener('hashchange',fromHash);fromHash();
+})();
+</script>
