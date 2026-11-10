@@ -69,3 +69,22 @@ input.inp,textarea.inp{font-family:inherit;font-size:15px;color:var(--ink);width
 .skel{animation:pulse 1.2s ease-in-out infinite}
 @keyframes pulse{50%{opacity:.5}}
 .vis{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+/* Mascota: animaciones suaves (150–2400 ms). Con movimiento reducido no se mueve nada. */
+.m{transform-origin:50% 100%;max-width:100%;height:auto}
+.m-bob{animation:m-bob 1.6s ease-in-out infinite}
+.m-hop{animation:m-hop .9s ease-out infinite}
+.m-sway{animation:m-sway 2.4s ease-in-out infinite}
+.m-blink{animation:m-blink 3.2s infinite;transform-box:fill-box;transform-origin:center}
+.m-wave{animation:m-wave .7s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:0% 100%}
+.m-draw{animation:m-draw 1.2s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:100% 100%}
+.m-zzz{animation:m-zzz 2s ease-out infinite}
+.m-pop{animation:m-pop 1.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes m-bob{50%{transform:translateY(-6px)}}
+@keyframes m-hop{0%,100%{transform:translateY(0)}50%{transform:translateY(-22px)}}
+@keyframes m-sway{0%,100%{transform:rotate(-4deg)}50%{transform:rotate(4deg)}}
+@keyframes m-blink{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+@keyframes m-wave{from{transform:rotate(-14deg)}to{transform:rotate(18deg)}}
+@keyframes m-draw{from{transform:rotate(-8deg)}to{transform:rotate(8deg)}}
+@keyframes m-zzz{0%{opacity:0;transform:translateY(8px)}30%{opacity:1}100%{opacity:0;transform:translateY(-16px)}}
+@keyframes m-pop{0%,100%{transform:scale(.85);opacity:.7}50%{transform:scale(1.1);opacity:1}}
+@media (prefers-reduced-motion:reduce){.m-bob,.m-hop,.m-sway,.m-blink,.m-wave,.m-draw,.m-zzz,.m-pop,.fade,.skel{animation:none}}

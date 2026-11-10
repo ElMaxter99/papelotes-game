@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="260" viewBox="0 0 120 130" class="m bob"><style>
+
+.m{transform-origin:50% 100%}
+.bob{animation:bob 1.6s ease-in-out infinite}
+.hop{animation:hop .9s ease-out infinite}
+.sway{animation:sway 2.4s ease-in-out infinite}
+.blink{animation:blink 3.2s infinite;transform-box:fill-box;transform-origin:center}
+.wave{animation:wave .7s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:0% 100%}
+.draw{animation:draw 1.2s ease-in-out infinite alternate;transform-box:fill-box;transform-origin:100% 100%}
+.zzz{animation:zzz 2s ease-out infinite}
+.pop{animation:pop 1.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+@keyframes bob{50%{transform:translateY(-6px)}}
+@keyframes hop{0%,100%{transform:translateY(0) scaleY(1)}20%{transform:scaleY(.94)}50%{transform:translateY(-22px)}}
+@keyframes sway{50%{transform:rotate(4deg)}0%,100%{transform:rotate(-4deg)}}
+@keyframes blink{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
+@keyframes wave{from{transform:rotate(-14deg)}to{transform:rotate(18deg)}}
+@keyframes draw{from{transform:rotate(-8deg)}to{transform:rotate(8deg)}}
+@keyframes zzz{0%{opacity:0;transform:translateY(8px)}30%{opacity:1}100%{opacity:0;transform:translateY(-16px)}}
+@keyframes pop{0%,100%{transform:scale(.85);opacity:.7}50%{transform:scale(1.1);opacity:1}}
+@media (prefers-reduced-motion:reduce){.bob,.hop,.sway,.blink,.wave,.draw,.zzz,.pop{animation:none}}
+</style><rect x="22" y="10" width="76" height="96" rx="10" fill="#fff" stroke="#1B2440" stroke-width="3"/><path d="M76 10v20a6 6 0 0 0 6 6h16" fill="#FFD23F" stroke="#1B2440" stroke-width="3" stroke-linejoin="round"/><g class="blink"><circle cx="48" cy="58" r="5" fill="#1B2440"/><circle cx="72" cy="58" r="5" fill="#1B2440"/></g><path d="M50 74q10 9 20 0" fill="none" stroke="#1B2440" stroke-width="3" stroke-linecap="round"/><g class="wave"><path d="M98 70l16-16" stroke="#1B2440" stroke-width="4" stroke-linecap="round"/></g><path d="M22 76l-14 10" stroke="#1B2440" stroke-width="4" stroke-linecap="round"/><path d="M42 106v14M78 106v14" stroke="#1B2440" stroke-width="4" stroke-linecap="round"/></svg>

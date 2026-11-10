@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { post, useGame } from '../use-game';
 import { Timer } from '../Timer';
+import { Mascot } from '../brand/Mascot';
 
 const NEXT: Record<string, string> = { idea: 'Empezar a dibujar', drawing: 'Cerrar el dibujo', upload: 'Cerrar la subida y revelar', reveal: 'Abrir la votación', vote: 'Cerrar la votación', result: 'Siguiente ronda' };
 
@@ -34,7 +35,7 @@ export function Host({ code }: { code: string }) {
         <div className="col" style={{ flex: 1, minWidth: 240 }}>
           {players.map((p) => <div className="card" key={p.id}><b>{p.name}</b><span className="row"><span>{p.score} pts</span>
             {round && ['drawing', 'upload'].includes(round.phase) ? <span className={`chip ${sub.has(p.id) ? 'ok' : 'wait'}`}>{sub.has(p.id) ? 'Foto subida' : 'Dibujando'}</span> : <span className={`chip ${p.online ? 'ok' : 'bad'}`}>{p.online ? 'Conectado' : 'Desconectado'}</span>}</span></div>)}
-          {players.length === 0 && <p className="mut">Aún no se ha unido nadie.</p>}
+          {players.length === 0 && <div className="col" style={{ alignItems: 'center' }}><Mascot pose="dormido" size={110} decorative /><p className="mut">Aún no se ha unido nadie.</p></div>}
         </div>
       </div>
       <p className="mut">TV: <a href={`/game/${game.room_code}/screen`} target="_blank">/game/{game.room_code}/screen</a> · Jugadores: /game/{game.room_code}/play</p>

@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { post, useGame } from '../use-game';
 import { Timer } from '../Timer';
+import { Mascot } from '../brand/Mascot';
 
 const COLORS = ['#2F5BEA', '#E83E8C', '#1FA971', '#FFD23F'];
 
@@ -58,8 +59,8 @@ export function Play({ code }: { code: string }) {
     <main className="s">
       <div className="bar"><span>{mine.name} · {mine.score} pts</span><span>Sala {game.room_code}{round ? ` · Ronda ${round.number}/${game.rounds_total}` : ''}</span></div>
       {error && <p className="err">{error}</p>}{msg && <p className="err" role="alert">{msg}</p>}
-      {game.status === 'lobby' && <div className="fade col"><h1 className="h1">¡Estás dentro!</h1><p className="mut">Mira la tele. El Game Master empezará enseguida.</p></div>}
-      {game.status === 'finished' && <div className="fade col"><h1 className="h1">Fin de partida</h1><p>Has hecho {mine.score} puntos.</p></div>}
+      {game.status === 'lobby' && <div className="fade col"><h1 className="h1">¡Estás dentro!</h1><p className="mut">Mira la tele. El Game Master empezará enseguida.</p><Mascot pose="esperando" size={120} decorative /></div>}
+      {game.status === 'finished' && <div className="fade col"><h1 className="h1">Fin de partida</h1><p>Has hecho {mine.score} puntos.</p><Mascot pose="gano" size={120} decorative /></div>}
       {round && game.status === 'active' && round.phase === 'idea' && <div className="fade col"><p className="mut">Prepárate…</p><div className="idea">{round.idea.emoji} {round.idea.title}</div></div>}
       {round && game.status === 'active' && (round.phase === 'drawing' || round.phase === 'upload') && (
         <div className="fade col grow">
@@ -72,7 +73,7 @@ export function Play({ code }: { code: string }) {
           {preview ? <><button className="btn" onClick={send} disabled={busy}>{busy ? 'Enviando…' : 'Enviar'}</button><button className="btn sec" onClick={() => { setPreview(null); fileRef.current?.click(); }}>Repetir</button></>
             : <button className="btn" onClick={() => fileRef.current?.click()}>{submitted ? 'Repetir la foto' : 'Abrir la cámara'}</button>}
         </div>)}
-      {round && game.status === 'active' && round.phase === 'reveal' && <div className="fade col"><h1 className="h2">Mira la tele</h1><p className="mut">Se están revelando los dibujos.</p></div>}
+      {round && game.status === 'active' && round.phase === 'reveal' && <div className="fade col"><h1 className="h2">Mira la tele</h1><p className="mut">Se están revelando los dibujos.</p><Mascot pose="esperando" size={100} decorative /></div>}
       {round && game.status === 'active' && round.phase === 'vote' && (
         <div className="fade col"><h1 className="h2">Elige el mejor dibujo</h1>
           <div className="pics" style={{ gridTemplateColumns: 'repeat(2,minmax(0,1fr))' }}>

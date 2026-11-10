@@ -13,6 +13,9 @@ Aún no hay despliegue. No se despliega sin permiso del propietario.
 - La cámara con `capture="environment"` no se ha probado en móviles iOS/Android reales.
 - No hay tests e2e de navegador todavía; se comprobó a mano el flujo por API y la TV con una captura.
 
+## Hecho en PR 1 (marca)
+Logo, favicon, icono de app, mascota «Papelo» con 6 poses animadas, README vistoso y guía de despliegue. Los PNG del icono (192 y 512 px) para instalar como app no se han generado: el manifiesto usa el SVG.
+
 ## Siguiente (PR 2 en adelante, según el lienzo aprobado)
 1. Acceso del Game Master por correo (Supabase Auth) y listados propios.
 2. Listas de ideas (sistema, admin y propias), ideas con foto, importar/exportar JSON.
