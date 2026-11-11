@@ -57,6 +57,35 @@ th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}th{fon
 .note{border-left:4px solid var(--pink);padding:6px 12px;background:var(--paper);border-radius:0 8px 8px 0;font-size:13px;max-width:70ch}
 .podium{display:flex;gap:8px;align-items:flex-end;justify-content:center;flex:1}
 .podium div{border:2px solid var(--ink);background:var(--yellow);color:#1b2440;font-weight:800;text-align:center;padding:6px 10px;border-radius:6px 6px 0 0}
+.desk{width:100%;max-width:760px;border:2px solid var(--ink);border-radius:10px;overflow:hidden;background:var(--paper)}
+.desk .top{display:flex;gap:6px;align-items:center;padding:8px 12px;border-bottom:2px solid var(--ink);font-weight:800;background:var(--bg)}
+.desk .top .sp{flex:1}.desk .body{padding:16px;display:flex;flex-direction:column;gap:12px;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:24px 24px}
+.hero{display:flex;gap:16px;flex-wrap:wrap;align-items:center}.hero>div{flex:1;min-width:200px;display:flex;flex-direction:column;gap:10px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:8px}
+.steps .li{flex-direction:column;align-items:flex-start;gap:2px}
+.phone.tall{min-height:480px}
+.tabbar{display:flex;justify-content:space-around;margin-top:auto;border-top:2px solid var(--ink);padding-top:8px;font-size:11px;font-weight:700}
+
+.sw{display:flex;gap:8px;flex-wrap:wrap}.sw div{width:110px;border:2px solid var(--ink);border-radius:10px;overflow:hidden;font-size:11px;font-weight:700;background:var(--paper)}.sw i{display:block;height:44px}.sw span{display:block;padding:4px 6px}
+.skel{height:14px;border-radius:6px;background:linear-gradient(90deg,var(--line),var(--grid),var(--line));background-size:200% 100%;animation:sh 1.2s ease-out infinite}
+@keyframes sh{from{background-position:200% 0}to{background-position:-200% 0}}
+.prog{height:12px;border-radius:99px;background:var(--line);overflow:hidden}.prog i{display:block;height:100%;width:60%;background:var(--blue);transition:width .3s ease-out}
+.toast{background:var(--green);color:#06281b;font-weight:700;border-radius:10px;padding:8px 12px;border:2px solid var(--ink);animation:up .25s ease-out}
+@keyframes up{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.stage{position:relative;height:150px;border:2px solid var(--ink);border-radius:10px;background:var(--paper);overflow:hidden;max-width:520px;width:100%}
+.stage .st{position:absolute;inset:0;display:grid;place-items:center;font-weight:800;font-size:22px;opacity:0;animation:fl 10s infinite}
+.stage .st:nth-child(1){animation-delay:0s}.stage .st:nth-child(2){animation-delay:2s}.stage .st:nth-child(3){animation-delay:4s}.stage .st:nth-child(4){animation-delay:6s}.stage .st:nth-child(5){animation-delay:8s}
+@keyframes fl{0%{opacity:0;transform:translateY(10px)}4%,18%{opacity:1;transform:none}22%,100%{opacity:0}}
+@media (prefers-reduced-motion:reduce){.skel,.toast,.stage .st{animation:none}.stage .st{position:static;opacity:1;height:auto;padding:6px}.stage{height:auto}}
+button:focus-visible,a:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+
+.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.flow .n{border:2px solid var(--ink);background:var(--paper);border-radius:10px;padding:6px 10px;font-weight:700;font-size:13px}.flow .n.d{background:var(--yellow);color:#1b2440;transform:rotate(-1deg)}.flow .n.e{background:var(--pink);color:#fff}.flow .a{color:var(--muted);font-weight:800}
+.modal{width:100%;max-width:340px;border:2px solid var(--ink);border-radius:14px;background:var(--paper);box-shadow:0 6px 0 var(--ink);padding:16px;display:flex;flex-direction:column;gap:10px}
+.modal h3{margin:0;font-size:17px}.modal .acts{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.hu{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:8px}.hu .li{flex-direction:column;align-items:flex-start;gap:2px}
+.hu b{color:var(--blue)}
+.inp{border:2px solid var(--ink);border-radius:10px;padding:8px 10px;background:var(--paper);font-size:13px;min-width:140px}
+.sw2{width:44px;height:24px;border-radius:99px;background:var(--green);border:2px solid var(--ink);position:relative;display:inline-block}.sw2::after{content:"";position:absolute;right:2px;top:2px;width:16px;height:16px;border-radius:50%;background:#fff;border:2px solid var(--ink)}
 </style>
 
 <div class="wrap">
@@ -65,15 +94,153 @@ th,td{text-align:left;padding:7px 8px;border-bottom:1px solid var(--line)}th{fon
   <p>Maquetas de todas las pantallas. Dibujos de ejemplo y nombres inventados. Nada está programado todavía: dime qué cambiar y lo ajusto antes de escribir código.</p>
 </header>
 <nav role="tablist" id="tabs">
-  <button role="tab" data-t="tv" aria-selected="true">TV</button>
-  <button role="tab" data-t="movil" aria-selected="false">Móvil</button>
-  <button role="tab" data-t="gm" aria-selected="false">Game Master</button>
-  <button role="tab" data-t="admin" aria-selected="false">Admin</button>
+  <button role="tab" data-t="matriz" aria-selected="true">Matriz rol × dispositivo</button>
+  <button role="tab" data-t="portada" aria-selected="false">Portada</button>
+  <button role="tab" data-t="acceso" aria-selected="false">Acceso</button>
+  <button role="tab" data-t="tv" aria-selected="false">TV</button>
+  <button role="tab" data-t="movil" aria-selected="false">Jugador móvil</button>
+  <button role="tab" data-t="jde" aria-selected="false">Jugador escritorio</button>
+  <button role="tab" data-t="gm" aria-selected="false">GM escritorio</button>
+  <button role="tab" data-t="gmm" aria-selected="false">GM móvil</button>
+  <button role="tab" data-t="admin" aria-selected="false">Admin escritorio</button>
+  <button role="tab" data-t="adminm" aria-selected="false">Admin móvil</button>
   <button role="tab" data-t="hist" aria-selected="false">Historial</button>
+  <button role="tab" data-t="estados" aria-selected="false">Estados y errores</button>
+  <button role="tab" data-t="hu" aria-selected="false">Historias de usuario</button>
+  <button role="tab" data-t="flujos" aria-selected="false">Flujos</button>
+  <button role="tab" data-t="modales" aria-selected="false">Modales</button>
+  <button role="tab" data-t="comp" aria-selected="false">Componentes</button>
+  <button role="tab" data-t="sistema" aria-selected="false">Sistema de diseño</button>
+  <button role="tab" data-t="anim" aria-selected="false">Flujo animado</button>
   <button role="tab" data-t="flujo" aria-selected="false">Flujo y reglas</button>
 </nav>
 
-<section id="tv">
+
+
+<section id="matriz">
+ <h2>Matriz de rol × dispositivo</h2>
+ <p>Cada casilla enlaza a su pestaña. Las marcadas «nuevo» no existían antes de este mensaje.</p>
+ <div class="scroll"><table>
+  <tr><th>Rol</th><th>Escritorio</th><th>Móvil</th><th>TV</th></tr>
+  <tr><td><strong>Visitante</strong></td><td><a href="#portada" style="color:var(--blue)">Portada y acceso</a></td><td><a href="#portada" style="color:var(--blue)">Portada y acceso</a></td><td>—</td></tr>
+  <tr><td><strong>Jugador</strong></td><td><a href="#jde" style="color:var(--blue)">Jugador escritorio</a> <span class="chip wait">nuevo</span></td><td><a href="#movil" style="color:var(--blue)">Jugador móvil</a></td><td><a href="#tv" style="color:var(--blue)">TV</a> (lo que mira)</td></tr>
+  <tr><td><strong>Game Master</strong></td><td><a href="#gm" style="color:var(--blue)">GM escritorio</a></td><td><a href="#gmm" style="color:var(--blue)">GM móvil</a></td><td><a href="#tv" style="color:var(--blue)">TV</a> (la controla)</td></tr>
+  <tr><td><strong>Admin</strong></td><td><a href="#admin" style="color:var(--blue)">Admin escritorio</a></td><td><a href="#adminm" style="color:var(--blue)">Admin móvil</a></td><td>—</td></tr>
+  <tr><td><strong>Todos</strong></td><td colspan="3"><a href="#hist" style="color:var(--blue)">Historial</a> · <a href="#estados" style="color:var(--blue)">Estados y errores</a> · <a href="#sistema" style="color:var(--blue)">Sistema de diseño</a> · <a href="#anim" style="color:var(--blue)">Flujo animado</a></td></tr>
+ </table></div>
+ <div class="note">Faltaba la combinación jugador en escritorio (portátil o tableta, por ejemplo con webcam o subiendo un archivo). Ahora está en su pestaña.</div>
+</section>
+
+<section id="jde" hidden>
+ <h2>Jugador en escritorio · <code>/game/[code]/play</code></h2>
+ <p>Mismo flujo que en móvil, pensado para portátil o tableta: la foto se elige desde archivo o webcam, con arrastrar y soltar.</p>
+ <div class="row">
+  <div><div class="cap">Dibuja (idea y tiempo)</div><div class="desk" style="max-width:420px"><div class="top">Ronda 3/8<span class="sp"></span>01:12</div><div class="body"><div class="idea">🏠 Una casa</div><div class="bar"><i style="width:60%"></i></div><p>Dibújala en papel y haz la foto cuando termines.</p><div class="btn">¡Ya he terminado!</div></div></div></div>
+  <div><div class="cap">Subir foto</div><div class="desk" style="max-width:420px"><div class="top">Sube en 18 s</div><div class="body"><div class="cam">Arrastra aquí tu foto<br>o elige un archivo</div><div style="display:flex;gap:8px"><span class="btn small">Elegir archivo</span><span class="btn small alt">Usar webcam</span></div></div></div></div>
+  <div><div class="cap">Vista previa y enviar</div><div class="desk" style="max-width:420px"><div class="top">Revisa tu foto</div><div class="body"><div class="pic" style="height:110px"><div class="sk"></div></div><div style="display:flex;gap:8px"><span class="btn small">Enviar</span><span class="btn small alt">Repetir</span></div></div></div></div>
+  <div><div class="cap">Votar</div><div class="desk" style="max-width:420px"><div class="top">Elige el mejor</div><div class="body"><div class="grid3"><div class="pic"><b>1</b><div class="sk"></div></div><div class="pic win"><b>2</b><div class="sk"></div></div><div class="pic"><b>3</b><div class="sk"></div></div></div><div class="btn">Votar el 2</div></div></div></div>
+ </div>
+</section>
+
+<section id="portada" hidden>
+ <h2>Portada (primera vista) · <code>/</code></h2>
+ <p>Escritorio y móvil. Explica el juego en una mirada y da dos caminos: crear partida (Game Master) o unirse con código (jugador).</p>
+ <div class="row">
+  <div><div class="cap">Escritorio</div><div class="desk"><div class="top">✏️ Papelotes<span class="sp"></span><span class="btn small alt">Entrar</span><span class="btn small">Crear partida</span></div><div class="body">
+   <div class="hero"><div><div class="big">Dibuja en papel. La tele lo revela.</div><p>Todos dibujan la misma idea en su papel, le hacen una foto con el móvil y la pantalla lo muestra para votar. Cada partida queda guardada.</p><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="btn">Crear una partida</span><span class="btn alt">Tengo un código</span></div></div><div class="tv" style="max-width:300px;min-width:200px"><div class="idea">🏠 Una casa</div><div class="timer" style="font-size:36px">01:12</div></div></div>
+   <div class="steps"><div class="li"><strong>1 · Mira la idea</strong>En la tele y en tu móvil</div><div class="li"><strong>2 · Dibuja en papel</strong>Tienes 60–120 s</div><div class="li"><strong>3 · Haz la foto</strong>Desde tu móvil</div><div class="li"><strong>4 · Vota</strong>Anónimo hasta el final</div></div>
+   <div class="li"><span>Hecho en casa para jugar en familia.</span><span><a href="#" style="color:var(--blue)">Legal</a> · <a href="#" style="color:var(--blue)">Privacidad</a> · <a href="#" style="color:var(--blue)">Cookies</a></span></div></div></div></div>
+  <div><div class="cap">Móvil</div><div class="phone tall"><div class="tvbar"><span>✏️ Papelotes</span><span>Entrar</span></div><div class="big">Dibuja en papel.<br>La tele lo revela.</div><p style="font-size:12px">Foto a tu dibujo, voto y recuerdo de cada partida.</p><div class="btn">Crear una partida</div><div class="btn alt">Tengo un código</div><div class="li" style="flex-direction:column;align-items:flex-start"><strong>Cómo se juega</strong>Idea · papel · foto · voto</div></div></div>
+  <div><div class="cap">Unirse con código</div><div class="phone tall"><div class="hand">¿Cuál es tu sala?</div><div class="li" style="justify-content:center;font-size:26px;letter-spacing:.3em;font-weight:800">F G K 7</div><div class="btn">Continuar</div><p style="font-size:11px">También puedes escanear el QR de la tele.</p></div></div>
+ </div>
+</section>
+
+<section id="acceso" hidden>
+ <h2>Acceso y creación · <code>/login</code>, <code>/new-game</code></h2>
+ <p>Los jugadores no tienen cuenta. Game Masters y admin entran por correo.</p>
+ <div class="row">
+  <div><div class="cap">Login Game Master (escritorio)</div><div class="desk" style="max-width:420px"><div class="top">✏️ Papelotes</div><div class="body"><div class="big">Entra para crear partidas</div><div class="li">Correo: <strong>tu@correo.com</strong></div><div class="btn">Enviarme un enlace de acceso</div><p style="font-size:12px">Te mandamos un enlace; no hay contraseña.</p></div></div></div>
+  <div><div class="cap">Login (móvil)</div><div class="phone tall"><div class="hand">¡Hola de nuevo!</div><div class="li">Correo: <strong>tu@correo.com</strong></div><div class="btn">Enviar enlace</div><div class="li" style="margin-top:auto">📬 Revisa tu correo</div></div></div>
+  <div><div class="cap">Nueva partida · paso 2 Modo</div><div class="desk" style="max-width:420px"><div class="top">Nueva partida<span class="sp"></span><span class="chip">2 de 4</span></div><div class="body"><div class="li"><strong>🗳 El mejor dibujo</strong><span class="chip ok">elegido</span></div><div class="li"><strong>🕵️ Adivina el dibujo</strong><span class="chip">elegir</span></div><div class="li" style="opacity:.55"><strong>☎️ Teléfono escacharrado</strong><span class="chip">próximamente</span></div><div class="btn">Siguiente</div></div></div></div>
+  <div><div class="cap">Nueva partida · paso 3 Tiempos y reglas</div><div class="desk" style="max-width:420px"><div class="top">Nueva partida<span class="sp"></span><span class="chip">3 de 4</span></div><div class="body"><div class="li">Dibujo <strong>90 s</strong></div><div class="li">Subida de foto <strong>+20 s</strong></div><div class="li">Rondas <strong>8</strong></div><div class="li">Dibujos anónimos <strong>sí</strong></div><div class="li">Máx. jugadores <strong>12</strong></div><div class="btn">Crear sala</div></div></div></div>
+ </div>
+</section>
+
+<section id="gmm" hidden>
+ <h2>Game Master · versión móvil</h2>
+ <p>El GM suele llevar el panel desde el móvil en el sofá: botones grandes y lo esencial arriba.</p>
+ <div class="row">
+  <div><div class="cap">Inicio / mis partidas</div><div class="phone tall"><div class="tvbar"><span>✏️ Papelotes</span><span>maxter</span></div><div class="btn">+ Nueva partida</div><div class="li"><span><strong>FGK7</strong><br>en curso · 3/8</span><span class="chip ok">Panel</span></div><div class="li"><span><strong>PQ2M</strong><br>terminada</span><span class="chip">Historial</span></div><div class="tabbar"><span>Partidas</span><span>Listas</span><span>Ajustes</span></div></div></div>
+  <div><div class="cap">Panel en partida</div><div class="phone tall"><div class="tvbar"><span>Ronda 3/8</span><span>FGK7</span></div><div class="timer" style="font-size:40px">01:12</div><div class="btn pink">Cerrar ya</div><div class="btn alt">Pausar</div><div class="btn alt">+30 s</div><div class="li"><strong>Ana</strong><span class="chip ok">✓</span></div><div class="li"><strong>Marta</strong><span class="chip bad">desconect.</span></div></div></div>
+  <div><div class="cap">Mis listas de ideas</div><div class="phone tall"><div class="li"><strong>Cumple de Marta</strong><span>24</span></div><div class="li"><strong>Animales y objetos</strong><span>copia</span></div><div class="btn small" style="align-self:flex-start">+ Idea</div><div class="cap" style="margin-top:6px">Nueva idea</div><div class="li">Título: <strong>Homer Simpson</strong></div><div class="li">Emoji: <strong>—</strong></div><div class="li">📷 Foto de referencia</div><div class="btn">Guardar</div></div></div>
+  <div><div class="cap">Historial de mi partida</div><div class="phone tall"><div class="cap">Ronda 3 · 🏠 Una casa</div><div class="grid3" style="grid-template-columns:repeat(2,1fr);flex:none"><div class="pic win"><b>1</b><div class="sk"></div>Marta · 3</div><div class="pic"><b>2</b><div class="sk"></div>Luis · 1</div></div><div class="btn alt small">ZIP</div><div class="btn alt small">Collage</div></div></div>
+ </div>
+</section>
+
+<section id="adminm" hidden>
+ <h2>Admin · versión móvil</h2>
+ <p>Lo mismo que el escritorio, en tarjetas en lugar de tablas.</p>
+ <div class="row">
+  <div><div class="cap">Resumen</div><div class="phone tall"><div class="tvbar"><span>Admin</span><span>☰</span></div><div class="li"><span>Partidas activas</span><strong>3</strong></div><div class="li"><span>Fotos guardadas</span><strong>1.204</strong></div><div class="li"><span>Peso total</span><strong>412 MB</strong></div><div class="bar"><i style="width:41%"></i></div><p style="font-size:11px">41 % del almacenamiento gratuito</p></div></div>
+  <div><div class="cap">Partidas</div><div class="phone tall"><div class="li" style="flex-direction:column;align-items:flex-start"><strong>FGK7 · maxter</strong><span class="chip ok">en curso 3/8</span><span>12 fotos · 3,4 MB</span></div><div class="li" style="flex-direction:column;align-items:flex-start"><strong>PQ2M · laura</strong><span class="chip">terminada</span><span>80 fotos · 22 MB</span><span class="btn small pink">Borrar fotos</span></div></div></div>
+  <div><div class="cap">Usuarios</div><div class="phone tall"><div class="li"><span><strong>maxter</strong><br>admin</span><span class="chip ok">activo</span></div><div class="li"><span><strong>laura</strong><br>Game Master</span><span class="chip ok">activo</span></div><div class="li"><span><strong>pepe</strong><br>Game Master</span><span class="chip bad">bloqueado</span></div></div></div>
+  <div><div class="cap">Listas del sistema</div><div class="phone tall"><div class="li"><strong>Animales y objetos</strong><span>60</span></div><div class="li"><strong>Famosos con foto</strong><span>35</span></div><div class="btn small" style="align-self:flex-start">+ Lista</div></div></div>
+ </div>
+</section>
+
+<section id="estados" hidden>
+ <h2>Estados vacíos, pausas y errores</h2>
+ <div class="row">
+  <div><div class="cap">TV · pausa del GM</div><div class="tv"><div class="big">⏸ Partida en pausa</div><p>El Game Master la reanudará enseguida.</p></div></div>
+  <div><div class="cap">TV · sin conexión</div><div class="tv"><div class="big">Reconectando…</div><p>La partida sigue; no se pierde ninguna foto.</p></div></div>
+  <div><div class="cap">Móvil · reconexión</div><div class="phone"><div class="big">📶 Sin red</div><p>Tu foto está guardada en el móvil. Se enviará cuando vuelva la conexión.</p><div class="btn">Reintentar envío</div></div></div>
+  <div><div class="cap">Móvil · foto rechazada</div><div class="phone"><div class="big">Foto muy oscura</div><p>Haz otra con más luz o con el papel más cerca.</p><div class="btn">Repetir foto</div></div></div>
+  <div><div class="cap">Móvil · sala llena / código mal</div><div class="phone"><div class="big">No encuentro esa sala</div><p>Revisa el código de 4 letras que se ve en la tele.</p><div class="btn alt">Volver</div></div></div>
+  <div><div class="cap">GM · aún sin partidas</div><div class="desk" style="max-width:320px"><div class="body"><div class="big">Aún no hay partidas</div><p>Crea la primera: tardas un minuto.</p><div class="btn">Crear partida</div></div></div></div>
+ </div>
+</section>
+
+
+<section id="sistema" hidden>
+ <h2>Sistema de diseño (propuesta para validar)</h2>
+ <p>Limpio, sobrio y cálido, con mucho aire. La cuadrícula de cuaderno solo aparece en TV y móvil de jugador como detalle; paneles de GM y admin son más tranquilos.</p>
+ <div class="cap">Color (claro / oscuro con los mismos nombres)</div>
+ <div class="sw"><div><i style="background:var(--bg)"></i><span>fondo</span></div><div><i style="background:var(--paper)"></i><span>papel</span></div><div><i style="background:var(--ink)"></i><span>tinta</span></div><div><i style="background:var(--blue)"></i><span>azul · acción</span></div><div><i style="background:var(--pink)"></i><span>rosa · énfasis</span></div><div><i style="background:var(--yellow)"></i><span>amarillo · idea</span></div><div><i style="background:var(--green)"></i><span>verde · éxito</span></div></div>
+ <div class="cap">Tipografía</div>
+ <div class="li" style="flex-direction:column;align-items:flex-start;max-width:520px"><span class="big">Bricolage Grotesque 800 · títulos</span><span>Bricolage Grotesque 400/600 · texto 15 px, interlineado 1,45</span><span class="hand">Caveat · solo toques manuscritos</span></div>
+ <div class="cap">Forma, sombra y espaciado</div>
+ <div class="li" style="max-width:520px;flex-direction:column;align-items:flex-start"><span>Radios 6 / 10 / 12 px · contorno 2 px · sombra dura 0 3px (solo botones e ideas)</span><span>Espaciado en múltiplos de 4 px; márgenes generosos</span></div>
+ <div class="cap">Movimiento</div>
+ <div class="li" style="max-width:520px;flex-direction:column;align-items:flex-start"><span>150–300 ms, ease-out. Entradas con 8 px de desplazamiento y fundido; barras de progreso suaves.</span><span>Con <code>prefers-reduced-motion</code> todo se muestra sin animar.</span></div>
+ <div class="cap">Accesibilidad</div>
+ <div class="li" style="max-width:520px">Foco visible de 3 px azul, uso completo con teclado, contraste ≥ 4,5:1</div>
+</section>
+
+<section id="anim" hidden>
+ <h2>Flujo animado de una ronda</h2>
+ <p>Cada fase entra con fundido y 8 px de desplazamiento. Con movimiento reducido se muestran todas apiladas.</p>
+ <div class="stage"><div class="st">1 · Idea: 🏠 Una casa</div><div class="st">2 · A dibujar: 01:30</div><div class="st">3 · 📸 Haced la foto</div><div class="st">4 · Revelación anónima</div><div class="st">5 · Votación y resultado</div></div>
+ <div class="cap">Carga, progreso, error y éxito</div>
+ <div class="row">
+  <div class="panel" style="max-width:300px"><div class="cap">Cargando (esqueleto)</div><div class="skel"></div><div class="skel" style="width:70%"></div><div class="skel" style="width:50%"></div></div>
+  <div class="panel" style="max-width:300px"><div class="cap">Subiendo fotos · 7 de 12</div><div class="prog"><i></i></div><div class="list"><div class="li">Ana <span class="chip ok">✓</span></div><div class="li">Luis <span class="chip wait">subiendo…</span></div><div class="li">Marta <span class="chip bad">falló · reintentar</span></div></div></div>
+  <div class="panel" style="max-width:300px"><div class="cap">Error</div><div class="li" style="border-color:var(--pink)">No se pudo guardar la lista. Comprueba la conexión y reintenta.</div><div class="btn small" style="align-self:flex-start">Reintentar</div></div>
+  <div class="panel" style="max-width:300px"><div class="cap">Éxito</div><div class="toast">✓ Lista guardada</div></div>
+  <div class="panel" style="max-width:300px"><div class="cap">Vacío</div><div class="big" style="font-size:18px">Aún no hay ideas</div><p style="font-size:12px">Añade la primera o importa un JSON.</p><div class="btn small" style="align-self:flex-start">Añadir idea</div></div>
+ </div>
+</section>
+
+<section id="hu" hidden><h2>Historias de usuario</h2><p>Por rol, con prioridad.</p><div class="cap">Visitante</div><div class="hu"><div class="li"><span><b>HU-V1</b> Como visitante quiero entender el juego en una mirada para decidir si crear una partida.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-V2</b> Como visitante quiero unirme con un código para jugar sin crear cuenta.</span><span class="chip">MVP</span></div></div><div class="cap">Jugador</div><div class="hu"><div class="li"><span><b>HU-J1</b> Quiero entrar con código o QR y elegir nombre y color para que me identifiquen.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-J2</b> Quiero ver la idea en mi móvil por si la tele queda lejos.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-J3</b> Quiero ver cuánto tiempo queda para organizarme.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-J4</b> Quiero fotografiar mi papel y revisar la foto antes de enviarla.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-J5</b> Quiero repetir la foto si sale mal mientras haya tiempo.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-J6</b> Quiero que mi foto no se pierda si falla la red.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-J7</b> Quiero votar el mejor dibujo sin poder votar el mío.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-J8</b> Quiero ver mi puntuación y mi puesto tras cada ronda.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-J9</b> Quiero volver a entrar si se me cierra el navegador.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-J10</b> Quiero pedir que borren mis fotos de una partida.</span><span class="chip">Después</span></div><div class="li"><span><b>HU-J11</b> Quiero adivinar qué es cada dibujo (modo adivina).</span><span class="chip">Después</span></div></div><div class="cap">Game Master</div><div class="hu"><div class="li"><span><b>HU-G1</b> Quiero entrar por correo sin contraseña.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-G2</b> Quiero crear una partida con asistente (listas, modo, tiempos, reglas).</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-G3</b> Quiero crear, editar, importar y exportar mis listas de ideas, con o sin foto.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-G4</b> Quiero copiar una lista del sistema para adaptarla.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-G5</b> Quiero ver quién se ha unido y quién se desconecta, y expulsar a alguien.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-G6</b> Quiero pausar, sumar tiempo, cambiar la idea o cerrar la fase.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-G7</b> Quiero ver quién ha subido foto y marcar «sin foto» a quien falle.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-G8</b> Quiero consultar el historial de mis partidas y descargar dibujos en ZIP o collage.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-G9</b> Quiero borrar las fotos de una partida.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-G10</b> Quiero llevar todo desde el móvil en el sofá.</span><span class="chip">MVP</span></div></div><div class="cap">Admin</div><div class="hu"><div class="li"><span><b>HU-A1</b> Quiero ver todas las partidas y usuarios, y bloquear a un usuario.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-A2</b> Quiero gestionar las listas del sistema y la biblioteca de imágenes.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-A3</b> Quiero ver el peso total y fijar retención, tamaño máximo y cuota de fotos.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-A4</b> Quiero moderar o borrar fotos de cualquier partida.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-A5</b> Quiero hacer todo esto también desde el móvil.</span><span class="chip">MVP</span></div></div><div class="cap">TV</div><div class="hu"><div class="li"><span><b>HU-T1</b> Quiero ver idea, tiempo y quién ha subido sin tocar nada.</span><span class="chip">MVP</span></div><div class="li"><span><b>HU-T2</b> Quiero ver la revelación y el resultado con letra grande y animaciones suaves.</span><span class="chip">MVP</span></div></div></section><section id="flujos" hidden><h2>Flujos paso a paso</h2><p>Los pasos amarillos son decisiones; los rosas, errores o caminos alternativos.</p><div class="list" style="gap:18px"><div class="cap">Jugador: unirse</div><div class="flow"><span class="n">Portada o QR</span><span class="a">→</span><span class="n">Código</span><span class="a">→</span><span class="n d">¿Existe la sala?</span><span class="a">→</span><span class="n">Nombre y color</span><span class="a">→</span><span class="n">Sala de espera</span><span class="a">→</span><span class="n e">Código mal → mensaje y reintento</span></div><div class="cap">Jugador: una ronda</div><div class="flow"><span class="n">Idea</span><span class="a">→</span><span class="n">Dibuja en papel</span><span class="a">→</span><span class="n">Foto</span><span class="a">→</span><span class="n">Vista previa</span><span class="a">→</span><span class="n d">¿Foto buena?</span><span class="a">→</span><span class="n">Enviar</span><span class="a">→</span><span class="n">Espera</span><span class="a">→</span><span class="n">Vota</span><span class="a">→</span><span class="n">Resultado</span><span class="a">→</span><span class="n e">Sin red → cola y reintento</span></div><div class="cap">Foto: subida</div><div class="flow"><span class="n">Capturar</span><span class="a">→</span><span class="n">Reducir a ≈1600 px</span><span class="a">→</span><span class="n">Subir</span><span class="a">→</span><span class="n d">¿Servidor ok?</span><span class="a">→</span><span class="n">Normalizar a WebP</span><span class="a">→</span><span class="n">Guardar</span><span class="a">→</span><span class="n e">Fallo → reintento automático (3 veces) y botón manual</span></div><div class="cap">GM: crear y llevar partida</div><div class="flow"><span class="n">Login por correo</span><span class="a">→</span><span class="n">Nueva partida (4 pasos)</span><span class="a">→</span><span class="n">Sala</span><span class="a">→</span><span class="n">Empezar</span><span class="a">→</span><span class="n">Fases de ronda</span><span class="a">→</span><span class="n d">¿Más rondas?</span><span class="a">→</span><span class="n">Podio</span><span class="a">→</span><span class="n">Historial</span></div><div class="cap">GM: gestionar listas</div><div class="flow"><span class="n">Mis listas</span><span class="a">→</span><span class="n">Nueva o copiar del sistema</span><span class="a">→</span><span class="n">Añadir idea (con o sin foto)</span><span class="a">→</span><span class="n">Importar JSON</span><span class="a">→</span><span class="n">Activar para partidas</span></div><div class="cap">Ronda: fases (TV)</div><div class="flow"><span class="n">Idea (3 s)</span><span class="a">→</span><span class="n">Dibujo</span><span class="a">→</span><span class="n">Subida de fotos</span><span class="a">→</span><span class="n">Revelación anónima</span><span class="a">→</span><span class="n">Votación</span><span class="a">→</span><span class="n">Resultado</span><span class="a">→</span><span class="n d">¿Última ronda?</span><span class="a">→</span><span class="n">Podio</span></div><div class="cap">Admin: moderación</div><div class="flow"><span class="n">Partidas</span><span class="a">→</span><span class="n">Abrir partida</span><span class="a">→</span><span class="n">Ver fotos</span><span class="a">→</span><span class="n d">¿Contenido inadecuado?</span><span class="a">→</span><span class="n">Borrar foto o partida</span><span class="a">→</span><span class="n">Registro de la acción</span></div><div class="cap">Reconexión</div><div class="flow"><span class="n">Se cierra el móvil</span><span class="a">→</span><span class="n">Vuelve a la sala</span><span class="a">→</span><span class="n">Reconoce al jugador por su cookie</span><span class="a">→</span><span class="n">Retoma la fase actual</span><span class="a">→</span><span class="n e">Si la ronda cerró → espera la siguiente</span></div></div></section><section id="modales" hidden><h2>Modales y diálogos</h2><p>Confirmaciones destructivas en rosa; foco atrapado dentro, Esc para cerrar, aparición con fundido de 200 ms.</p><div class="row"><div><div class="modal" role="dialog" aria-label="¿Cerrar la fase ahora?"><h3>¿Cerrar la fase ahora?</h3><p>Faltan 2 jugadores por subir foto. Se marcarán «sin foto».</p><div class="acts"><span class="btn small alt">Seguir esperando</span><span class="btn small pink">Cerrar ya</span></div></div></div><div><div class="modal" role="dialog" aria-label="¿Expulsar a Luis?"><h3>¿Expulsar a Luis?</h3><p>Podrá volver a entrar con el código, salvo que lo bloquees.</p><div class="acts"><span class="btn small alt">Cancelar</span><span class="btn small pink">Expulsar</span></div></div></div><div><div class="modal" role="dialog" aria-label="¿Terminar la partida?"><h3>¿Terminar la partida?</h3><p>Se pasará al podio. No se puede reanudar.</p><div class="acts"><span class="btn small alt">Volver</span><span class="btn small pink">Terminar</span></div></div></div><div><div class="modal" role="dialog" aria-label="¿Borrar las fotos de esta partida?"><h3>¿Borrar las fotos de esta partida?</h3><p>Se conservarán puntos y ranking, pero no los dibujos. No se puede deshacer.</p><div class="inp">Escribe BORRAR para confirmar</div><div class="acts"><span class="btn small alt">Cancelar</span><span class="btn small pink">Borrar fotos</span></div></div></div><div><div class="modal" role="dialog" aria-label="¿Borrar la lista «Cumple de Marta»?"><h3>¿Borrar la lista «Cumple de Marta»?</h3><p>24 ideas. No se puede deshacer.</p><div class="acts"><span class="btn small alt">Cancelar</span><span class="btn small pink">Borrar lista</span></div></div></div><div><div class="modal" role="dialog" aria-label="Añadir idea"><h3>Añadir idea</h3><div class="inp">Título</div><div class="inp">Emoji (opcional)</div><div class="inp">📷 Foto de referencia (opcional)</div><div class="inp">Dificultad ★★☆</div><div class="acts"><span class="btn small alt">Cancelar</span><span class="btn small ">Guardar</span></div></div></div><div><div class="modal" role="dialog" aria-label="Importar listas (JSON)"><h3>Importar listas (JSON)</h3><div class="inp">Arrastra el archivo aquí</div><div class="prog"><i style="width:45%"></i></div><p style="font-size:12px">Importando 11 de 24 ideas…</p><div class="acts"><span class="btn small alt">Cancelar</span></div></div></div><div><div class="modal" role="dialog" aria-label="Ajustes de la partida"><h3>Ajustes de la partida</h3><div class="li">Dibujo <strong>90 s</strong></div><div class="li">Subida <strong>+20 s</strong></div><div class="li">Anónimos <span class="sw2"></span></div><div class="li">Sonidos <span class="sw2"></span></div><div class="acts"><span class="btn small alt">Cerrar</span><span class="btn small ">Guardar</span></div></div></div><div><div class="modal" role="dialog" aria-label="Bloquear usuario"><h3>Bloquear usuario</h3><p>pepe no podrá crear partidas. Sus partidas actuales no se borran.</p><div class="acts"><span class="btn small alt">Cancelar</span><span class="btn small pink">Bloquear</span></div></div></div><div><div class="modal" role="dialog" aria-label="Código QR de la sala"><h3>Código QR de la sala</h3><div class="ph" style="width:110px;height:110px;align-self:center"></div><p style="text-align:center">FGK7</p><div class="acts"><span class="btn small alt">Cerrar</span></div></div></div><div><div class="modal" role="dialog" aria-label="Foto enviada"><h3>Foto enviada</h3><div class="toast">✓ Tu dibujo está en la tele</div><div class="acts"><span class="btn small ">Vale</span></div></div></div><div><div class="modal" role="dialog" aria-label="Pedir que borren mis fotos"><h3>Pedir que borren mis fotos</h3><p>Se avisa al Game Master. Tus dibujos de esta partida se ocultarán.</p><div class="acts"><span class="btn small alt">Cancelar</span><span class="btn small pink">Pedir borrado</span></div></div></div><div><div class="modal" role="dialog" aria-label="Error al subir la foto"><h3>Error al subir la foto</h3><p>No se pudo enviar. Tu foto sigue en el móvil.</p><div class="acts"><span class="btn small alt">Cancelar</span><span class="btn small ">Reintentar</span></div></div></div></div></section><section id="comp" hidden><h2>Biblioteca de componentes</h2><p>Variantes y estados de cada pieza.</p>
+<div class="cap">Botones: principal, secundario, peligro, deshabilitado, cargando</div><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="btn small">Principal</span><span class="btn small alt">Secundario</span><span class="btn small pink">Peligro</span><span class="btn small" style="opacity:.45">Deshabilitado</span><span class="btn small">Enviando…</span></div>
+<div class="cap">Campos: normal, foco, error</div><div style="display:flex;gap:8px;flex-wrap:wrap"><span class="inp">Tu nombre</span><span class="inp" style="outline:3px solid var(--blue)">Con foco</span><span class="inp" style="border-color:var(--pink)">Nombre ya usado</span></div>
+<div class="cap">Chips de estado</div><div class="chips"><span class="chip ok">subida</span><span class="chip wait">subiendo</span><span class="chip bad">sin foto</span><span class="chip">dibujando</span></div>
+<div class="cap">Fichas de idea: simple, con foto</div><div style="display:flex;gap:12px;flex-wrap:wrap"><div class="idea">🏠 Una casa</div><div class="idea photo"><div class="ph"></div>Homer Simpson</div></div>
+<div class="cap">Miniatura de dibujo: normal, ganadora, atenuada (la mía), cargando, error</div><div style="display:flex;gap:8px;flex-wrap:wrap"><div class="pic" style="width:90px"><b>1</b><div class="sk"></div></div><div class="pic win" style="width:90px"><b>2</b><div class="sk"></div></div><div class="pic" style="width:90px;opacity:.4"><b>3</b>Mía</div><div class="pic" style="width:90px"><div class="skel" style="width:60%"></div></div><div class="pic" style="width:90px;border-color:var(--pink)">⚠️</div></div>
+<div class="cap">Temporizador y progreso</div><div style="max-width:300px"><div class="timer" style="font-size:40px">01:12</div><div class="bar"><i style="width:60%"></i></div></div>
+<div class="cap">Interruptor, fila de lista, tabla, aviso (toast), esqueleto</div><div style="display:flex;gap:10px;flex-wrap:wrap;align-items:center"><span class="sw2"></span><div class="li" style="min-width:200px"><strong>Fila</strong><span class="chip ok">ok</span></div><div class="toast">✓ Guardado</div><div class="skel" style="width:140px"></div></div>
+<div class="cap">Navegación: pestañas inferiores (móvil), barra superior (escritorio)</div><div class="phone" style="min-height:0;width:260px"><div class="tabbar" style="margin:0;border:0"><span>Partidas</span><span>Listas</span><span>Ajustes</span></div></div>
+</section>
+<section id="tv" hidden>
  <h2>TV · <code>/game/[code]/screen</code></h2>
  <p>Una pantalla por fase. Letra grande, legible a 3 metros.</p>
  <div class="row">
@@ -153,7 +320,7 @@ function show(t){
   document.querySelectorAll('section').forEach(function(s){s.hidden=s.id!==t});
 }
 tabs.forEach(function(b){b.addEventListener('click',function(){location.hash=b.dataset.t})});
-function fromHash(){var h=location.hash.slice(1);show(document.getElementById(h)?h:'tv')}
+function fromHash(){var h=location.hash.slice(1);show(document.getElementById(h)?h:'matriz')}
 window.addEventListener('hashchange',fromHash);fromHash();
 })();
 </script>
